@@ -1,8 +1,5 @@
 import React,{useState} from 'react'
 import { useNavigate } from 'react-router-dom';
-import NavBar from './NavBar';
-import { Button } from 'bootstrap';
-import App from '../App';
 
 const Home = ({ coindata ,selectedCoinType}) => {
     
@@ -12,23 +9,43 @@ const Home = ({ coindata ,selectedCoinType}) => {
         console.log("dyafy")
         navigate(`/cart/${id}`);
       };
-      const [count, setCount] = useState(0);
+      let count=0;
+      const Counter = ({ initialCount, onIncrease, onDecrease }) => {
+        const [count, setCount] = useState(initialCount);
+      
+        return (
+          <div>
+            <button onClick={onDecrease} style={{ marginLeft: '30px', backgroundColor: 'red', color: 'white' }}>-</button>
+            <span>{count}</span>
+            <button onClick={onIncrease} style={{ marginRight: '30px', backgroundColor: 'green', color: 'white' }}>+</button>
+          </div>
+        );
+      };
+      
+      
 
-      const handleIncrease = () => {
-        setCount(prevCount => prevCount + 1);
+      const handleIncrease = (item) => {
+        const updatedData = coindata.map((i) =>
+          i.id === item.id ? { ...i, amount: i.amount + 1 } : i
+        );
+        setCoindata(updatedData);
       };
     
-      const handleDecrease = () => {
-        if (count > 0) {
-          setCount(prevCount => prevCount - 1);
+      const handleDecrease = (item) => {
+        if (item.amount > 0) {
+          const updatedData = coindata.map((i) =>
+            i.id === item.id ? { ...i, amount: i.amount - 1 } : i
+          );
+          setCoindata(updatedData);
         }
       };
+    
     
 
       const filteredCoins=selectedCoinType?coindata.filter(coin=> coin.category === selectedCoinType):coindata;
   return (
     <>
-    
+    <div className='homerender'>
 {Array.isArray(filteredCoins) && filteredCoins.map((item) => (
 <div className='container' key={item.id}>
 <div className='cards' >
@@ -56,7 +73,7 @@ const Home = ({ coindata ,selectedCoinType}) => {
 </div>
 </div>
 ))}
-
+</div>
 </>
   );
 };

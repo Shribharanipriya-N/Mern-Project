@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import { Routes, Route } from 'react-router-dom';
 import NavBar from './components/NavBar.jsx'
-import {Outlet} from 'react-router-dom'
 import Home from './components/Home.jsx'
 import Button from './components/Button.jsx'
+import About from './components/About.jsx';
+import Contact from './components/Contact.jsx';
+import AddToCart from './components/AddToCart.jsx';
 
 const App = () => {
   const [list,setlist]=useState([]);
@@ -26,12 +29,14 @@ const App = () => {
   console.log(selectedCoinType)
   return (
     <>
-    <NavBar/>
-    <Button setSelectedCoinType={setSelectedCoinType}/>
-    <div className='homerender'>
-     <Home coindata={list}/>
-    </div>
-    <Outlet/>
+    <NavBar />
+      <Button setSelectedCoinType={setSelectedCoinType} />
+      <Routes>
+        <Route path="/" element={<Home coindata={list} />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/cart" element={<AddToCart />} />
+      </Routes>
     </>
   )
 }

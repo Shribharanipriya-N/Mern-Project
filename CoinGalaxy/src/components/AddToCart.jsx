@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 const AddToCart = ({coindata}) => {
   const { id } = useParams();
   const selectedItem = coindata.find(item => item.id === parseInt(id));
-console.log(selectedItem);
+console.log(selectedItem); 
   return (
     <div>
       <h1>Shopping Cart</h1>
