@@ -122,3 +122,87 @@ header li:hover{
   border: none;
   border-radius: 25px;
 }
+
+
+/* contact */
+
+.contact-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.contact-container h1 {
+  font-size: 29px;
+  margin-bottom: 20px;
+}
+
+.contact-container p {
+  font-size: 19px;
+  margin-bottom: 20px;
+  margin-top: 80px;
+  
+}
+
+.contact-options {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.contact-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+ 
+  cursor: pointer;
+}
+
+.contact-option p {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.contact-option span {
+  font-size: 16px;
+}
+
+/* about */
+
+.about-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 90px ;
+  text-align: center;
+  display: flex;
+  
+}
+
+.about-container h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.about-container h2 {
+  text-align: left;
+  font-size: 20px;
+  margin-top: 40px;
+  margin-bottom: 10px;
+}
+
+.about-container p {
+  text-align: left;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+
+.logo {
+  padding: 50px;
+  width: 350px;
+  margin-top: 40px;
+}

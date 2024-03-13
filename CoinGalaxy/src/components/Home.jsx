@@ -1,5 +1,8 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { useNavigate } from 'react-router-dom';
+import NavBar from './NavBar';
+import { Button } from 'bootstrap';
+import App from '../App';
 
 const Home = ({ coindata ,selectedCoinType}) => {
     
@@ -9,10 +12,23 @@ const Home = ({ coindata ,selectedCoinType}) => {
         console.log("dyafy")
         navigate(`/cart/${id}`);
       };
+      const [count, setCount] = useState(0);
+
+      const handleIncrease = () => {
+        setCount(prevCount => prevCount + 1);
+      };
+    
+      const handleDecrease = () => {
+        if (count > 0) {
+          setCount(prevCount => prevCount - 1);
+        }
+      };
+    
 
       const filteredCoins=selectedCoinType?coindata.filter(coin=> coin.category === selectedCoinType):coindata;
   return (
     <>
+    
 {Array.isArray(filteredCoins) && filteredCoins.map((item) => (
 <div className='container' key={item.id}>
 <div className='cards' >
@@ -28,9 +44,9 @@ const Home = ({ coindata ,selectedCoinType}) => {
 </div>
 <div className='right'>
     <div className='buttons'>
-    <button style={{  backgroundColor: '#f1807e ', color: 'white' ,height:'21px'}}>-</button>
-                <span style={{padding:'5px',}}>{1}</span>
-                 <button style={{ marginRight: '30px', backgroundColor: '#50C878', color: 'white', height:'21px'}} >+</button>
+    <button style={{  backgroundColor: '#f1807e ', color: 'white' ,height:'21px'}}  onClick={handleDecrease}>-</button>
+                <span style={{padding:'5px',}}>{count}</span>
+                 <button style={{ marginRight: '30px', backgroundColor: '#50C878', color: 'white', height:'21px'}} onClick={handleIncrease}>+</button>
     </div>
 
               <button style={{ backgroundColor: '#dfc647', color: 'black', border: '2px', borderRadius: '15px', width:'75px' ,marginLeft:'9px'}} onClick={()=>handleAddToCart(item.id)} >Add to Cart</button>
