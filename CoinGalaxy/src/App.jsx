@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { Routes, Route } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Routes, Route} from 'react-router-dom';
 import NavBar from './components/NavBar.jsx'
 import Home from './components/Home.jsx'
 import Button from './components/Button.jsx'
@@ -30,9 +30,11 @@ const App = () => {
   return (
     <>
     <NavBar />
-      <Button setSelectedCoinType={setSelectedCoinType} />
       <Routes>
-        <Route path="/" element={<Home coindata={list} />} />
+        <Route path="/" element={<>
+          <Button setSelectedCoinType={setSelectedCoinType} />
+          <Home coindata={list} />
+        </>} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/cart" element={<AddToCart />} />

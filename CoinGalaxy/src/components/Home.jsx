@@ -45,7 +45,7 @@ const Home = ({ coindata ,selectedCoinType}) => {
       const filteredCoins=selectedCoinType?coindata.filter(coin=> coin.category === selectedCoinType):coindata;
   return (
     <>
-    <div className='homerender'>
+<div className='homerender'>
 {Array.isArray(filteredCoins) && filteredCoins.map((item) => (
 <div className='container' key={item.id}>
 <div className='cards' >
