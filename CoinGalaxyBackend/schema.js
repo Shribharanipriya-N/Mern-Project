@@ -13,6 +13,7 @@ const Coinsschema=new mongoose.Schema({
     period:{
         type:String,
     },
+    
     amount:{
         type: String,
     },
