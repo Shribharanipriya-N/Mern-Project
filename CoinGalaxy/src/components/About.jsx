@@ -1,5 +1,4 @@
 import React from 'react';
-// import coingallexyLogo from '../assets/coingallexy_logo.png';
 import '../index.css';
 
 const About = () => {
@@ -20,7 +19,7 @@ const About = () => {
       </p>
       </div>
       <div>
-      <img src='../images/logo.jpeg' alt="CoinGallexy Logo" className="logo" />
+      <img src='https://i.postimg.cc/PJVd5wv6/Screenshot-2024-03-14-001742.png' alt="CoinGallexy Logo" className="logo" />
       </div>
       
     </div>

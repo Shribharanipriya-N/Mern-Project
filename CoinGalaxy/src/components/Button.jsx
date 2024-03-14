@@ -1,6 +1,5 @@
 import React from 'react';
 import '../index.css'
-import Home from './Home';
 
 const Button = (props) => {
   const {setSelectedCoinType}=props;

@@ -1,25 +1,53 @@
-// AddToCart.jsx
-import React from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useState } from 'react';
+import '../index.css';
 
-const AddToCart = ({coindata}) => {
-  const { id } = useParams();
+const AddToCart = ({ coindata, id }) => {
+  const [quantity, setQuantity] = useState(1);
+
+ 
   const selectedItem = coindata.find(item => item.id === parseInt(id));
-console.log(selectedItem); 
+
+  const handleQuantityChange = (e) => {
+    setQuantity(parseInt(e.target.value)); 
+  };
+
+  const parseAmount = (amountString) => {
+    return parseInt(amountString.replace(/\D/g, ''));
+  };
+
+  const totalAmount = selectedItem ? parseAmount(selectedItem.amount) * quantity : 0;
+
   return (
-    <div>
-      <h1>Shopping Cart</h1>
-      <div>
-          <img src={selectedItem.image}/>
-          <div>
-            <h2>{selectedItem.title}</h2>
-            <p>Amount: {selectedItem.amount}</p>
-            
-          </div>
-        
+    <>
+      <h1 style={{padding:'20px',textAlign:'center'}}>Cart Items</h1>
+      <div className="cartdiv">
+        <div className='cartcard'>
+          {selectedItem && (
+            <>
+              <img className="cart-img" src={selectedItem.image} alt={selectedItem.title} />
+              <div className='cartitems'>
+                <div className='left-cart'>
+                  <h2><b>{selectedItem.title}</b></h2>
+                  <p><b>Amount:</b> ${parseAmount(selectedItem.amount)}</p>
+                </div>
+                <div className='rightcart'>
+                  <div style={{ display: 'flex' }}>
+                    <b>Quantity:</b>
+                    <select style={{ width: '40px' }} value={quantity} onChange={handleQuantityChange}>
+                      {[...Array(10)].map((_, index) => (
+                        <option key={index} value={index + 1}>{index + 1}</option>
+                      ))}
+                    </select>
+                  </div>
+                  <p><b>Total Amount:</b> ${totalAmount}</p>
+                  <button style={{ backgroundColor: '#DAA520', color: 'black', border: 'none', padding: '10px 20px', borderRadius: '5px', cursor: 'pointer' }}>Pay Now</button>
+                </div>
+              </div>
+            </>
+          )}
+        </div>
       </div>
-      {/* You can add more details here as needed */}
-    </div>
+    </>
   );
 };
 

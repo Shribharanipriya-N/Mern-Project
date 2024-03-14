@@ -10,6 +10,7 @@ import AddToCart from './components/AddToCart.jsx';
 const App = () => {
   const [list,setlist]=useState([]);
   const [selectedCoinType, setSelectedCoinType] = useState();
+  const [cartitem,setcartitem]=useState();
 
   useEffect(() => {
     fetch("http://localhost:5000/get-coins").then((res) => res.json())
@@ -27,17 +28,19 @@ const App = () => {
       })
   },[selectedCoinType])
   console.log(selectedCoinType)
+  console.log(cartitem)
   return (
     <>
     <NavBar />
       <Routes>
         <Route path="/" element={<>
           <Button setSelectedCoinType={setSelectedCoinType} />
-          <Home coindata={list} />
+          <Home coindata={list} setcartitem={setcartitem}/>
         </>} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/cart" element={<AddToCart />} />
+        <Route path="/cart" element={<AddToCart coindata={list} id={cartitem} />} />
+
       </Routes>
     </>
   )
