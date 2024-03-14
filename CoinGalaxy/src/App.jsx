@@ -13,7 +13,7 @@ const App = () => {
   const [cartitem,setcartitem]=useState();
 
   useEffect(() => {
-    fetch("http://localhost:5000/get-coins").then((res) => res.json())
+    fetch(`${import.meta.env.VITE_APIURL}/get-coins`).then((res) => res.json())
     .then((json) => {
         if(selectedCoinType){
           const filteredCoins=json.filter((coin)=> coin.category === selectedCoinType);
